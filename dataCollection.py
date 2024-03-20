@@ -9,3 +9,9 @@ offset = 20
 imgSize = 300
 folder = "Data/C"
 counter = 0
+
+while True:
+    success, img = cap.read()
+    hands, img = detector.findHands(img)
+    if hands:
+        hand = hands[0]
