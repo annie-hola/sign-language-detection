@@ -15,3 +15,8 @@ while True:
     hands, img = detector.findHands(img)
     if hands:
         hand = hands[0]
+        x, y, w, h = hand['bbox']
+        imgWhite = np.ones((imgSize, imgSize, 3), np.uint8) * 255
+        imgCrop = img[y - offset:y + h + offset, x - offset:x + w + offset]
+        imgCropShape = imgCrop.shape
+        aspectRatio = h / w
