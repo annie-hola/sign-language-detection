@@ -11,3 +11,7 @@ imgSize = 300
 folder = "Data/C"
 counter = 0
 labels = ["A", "B", "C"]
+while True:
+    success, img = cap.read()
+    imgOutput = img.copy()
+    hands, img = detector.findHands(img)
