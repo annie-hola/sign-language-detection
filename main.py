@@ -31,3 +31,20 @@ while True:
             imgWhite[:, wGap:wCal + wGap] = imgResize
             prediction, index = classifier.getPrediction(imgWhite, draw=False)
             print(prediction, index)
+        else:
+            k = imgSize / w
+            hCal = math.ceil(k * h)
+            imgResize = cv2.resize(imgCrop, (imgSize, hCal))
+            imgResizeShape = imgResize.shape
+            hGap = math.ceil((imgSize - hCal) / 2)
+            imgWhite[hGap:hCal + hGap, :] = imgResize
+            prediction, index = classifier.getPrediction(imgWhite, draw=False)
+        cv2.rectangle(imgOutput, (x - offset, y - offset-50),
+                      (x - offset+90, y - offset-50+50), (255, 0, 255), cv2.FILLED)
+        cv2.putText(imgOutput, labels[index], (x, y -26), cv2.FONT_HERSHEY_COMPLEX, 1.7, (255, 255, 255), 2)
+        cv2.rectangle(imgOutput, (x-offset, y-offset),
+                      (x + w+offset, y + h+offset), (255, 0, 255), 4)
+        cv2.imshow("ImageCrop", imgCrop)
+        cv2.imshow("ImageWhite", imgWhite)
+    cv2.imshow("Image", imgOutput)
+    cv2.waitKey(1)
