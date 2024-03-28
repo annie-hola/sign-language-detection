@@ -18,6 +18,8 @@ while True:
         x, y, w, h = hand['bbox']
         imgWhite = np.ones((imgSize, imgSize, 3), np.uint8) * 255
         imgCrop = img[y - offset:y + h + offset, x - offset:x + w + offset]
+        
+        # fit img Crop to imgWhite
         imgCropShape = imgCrop.shape
         aspectRatio = h / w
         if aspectRatio > 1:
@@ -37,6 +39,8 @@ while True:
         cv2.imshow("ImageCrop", imgCrop)
         cv2.imshow("ImageWhite", imgWhite)
     cv2.imshow("Image", img)
+    
+    # take picture and save
     key = cv2.waitKey(1)
     if key == ord("s"):
         counter += 1
