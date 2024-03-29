@@ -8,4 +8,4 @@ Sign Language Detection using OpenCV
 
 2. Train data using `https://teachablemachine.withgoogle.com/train`
 
-3.
+3. Run test.py
